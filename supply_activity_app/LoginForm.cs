@@ -112,6 +112,11 @@ namespace supply_activity_app
             {
                 btnLogin_Click(sender, e);
             }
+
+            if (e.Control && e.KeyCode.ToString() == "I")
+            {
+                toolStripButton2_Click(sender, e);
+            }
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
