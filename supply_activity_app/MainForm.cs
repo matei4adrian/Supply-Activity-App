@@ -43,6 +43,11 @@ namespace supply_activity_app
 
                 DataGridViewRow row = dgvContracts.Rows[rowIndex];
                 row.Tag = contract;
+                if(contract.signDate.AddYears((int)contract.Validity) < DateTime.Today)
+                {
+                    row.DefaultCellStyle.BackColor = Color.Red;
+                    row.DefaultCellStyle.ForeColor = Color.Black;
+                }
             }
         }
 

@@ -42,26 +42,22 @@ namespace supply_activity_app
                         {
                             username = (string)reader["Username"];
                             password = (string)reader["Password"];
-
-                            if (username != "" && password != "")
-                            {
-                                MainForm mainForm = new MainForm(this);
-                                this.Hide();
-                                if (mainForm.ShowDialog() == DialogResult.Cancel)
-                                {
-                                    Application.Exit();
-                                }                               
-                                tbUser.Text = "";
-                                tbPass.Text = "";
-                            }
-                            else
-                            {
-                                MessageBox.Show("Login failed", "Error");
-                            }
                         }
+
                         if (username == "" && password == "")
                         {
                             MessageBox.Show("Login failed", "Error");
+                        }
+                        else
+                        {
+                            MainForm mainForm = new MainForm(this);
+                            this.Hide();
+                            if (mainForm.ShowDialog() == DialogResult.Cancel)
+                            {
+                                Application.Exit();
+                            }
+                            tbUser.Text = "";
+                            tbPass.Text = "";
                         }
                     }
                 }
