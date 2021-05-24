@@ -13,10 +13,12 @@ namespace supply_activity_app
 {
     public partial class EditContractForm : Form
     {
+        #region Attributes
         private Contract contract = new Contract();
         private List<Provider> providers = new List<Provider>();
         private List<Contract> contracts = new List<Contract>();
         private string connectionString = "Data Source=database.db";
+        #endregion
 
         public EditContractForm(Contract contract, List<Provider> providers, List<Contract> contracts)
         {
@@ -26,6 +28,7 @@ namespace supply_activity_app
             this.contracts = contracts;
         }
 
+        #region Methods
         public void EditContract(Contract _contract)
         {
             string query = "UPDATE Contracts SET Provider = @provider, SignDate = @signDate, Validity = @validity, Value = @value WHERE Id = @id;";
@@ -46,7 +49,9 @@ namespace supply_activity_app
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
 
+        #region Events
         private void EditContractForm_Load(object sender, EventArgs e)
         {
             foreach (Provider provider in providers)
@@ -81,7 +86,9 @@ namespace supply_activity_app
             EditContract(contract);
             this.DialogResult = DialogResult.OK;
         }
+        #endregion
 
+        #region Validations
         private void cbProviders_Validating(object sender, CancelEventArgs e)
         {
             if (cbProviders.SelectedIndex < 0)
@@ -99,7 +106,7 @@ namespace supply_activity_app
         private void dtpSignDate_Validating(object sender, CancelEventArgs e)
         {
             DateTime todayDate = DateTime.Today;
-            if (todayDate < dtpSignDate.Value)
+            if (todayDate.AddDays(1) < dtpSignDate.Value)
             {
                 errorProvider1.SetError(dtpSignDate, "The date of signing must be today or a date in the past!");
                 e.Cancel = true;
@@ -146,7 +153,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(tbValue, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void EditContractForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -159,5 +168,6 @@ namespace supply_activity_app
                 btnOk_Click(sender, e);
             }
         }
+        #endregion
     }
 }

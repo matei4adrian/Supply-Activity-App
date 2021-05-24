@@ -14,9 +14,12 @@ namespace supply_activity_app
 {
     public partial class EditMaterialForm : Form
     {
+        #region Attributes
         private Material material = new Material();
         private List<Material> materials = new List<Material>();
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public EditMaterialForm(Material material, List<Material> materials)
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace supply_activity_app
             this.materials = materials;
         }
 
+        #region Methods
         public void EditMaterial(Material _material)
         {
             string query = "UPDATE Materials SET Name = @name, Price = @price WHERE Id = @id;";
@@ -42,7 +46,9 @@ namespace supply_activity_app
                 command.ExecuteNonQuery();
             }
         }
+        #endregion
 
+        #region Events
         private void EditMaterialForm_Load(object sender, EventArgs e)
         {
             tbName.Text = material.Name;
@@ -78,7 +84,9 @@ namespace supply_activity_app
                 MessageBox.Show("This material already exists !", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Validations
         private void tbName_Validating(object sender, CancelEventArgs e)
         {
             if (tbName.Text.Trim().Length == 0)
@@ -124,7 +132,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(tbPrice, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void EditMaterialForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -137,5 +147,6 @@ namespace supply_activity_app
                 btnOk_Click(sender, e);
             }
         }
+        #endregion
     }
 }

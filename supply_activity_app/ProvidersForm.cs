@@ -15,16 +15,20 @@ namespace supply_activity_app
 {
     public partial class ProvidersForm : Form
     {
+        #region Attributes
         private List<Material> materials = new List<Material>();
         private List<Provider> providers = new List<Provider>();
         MainForm mainForm;
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public ProvidersForm(MainForm mainForm)
         {
             InitializeComponent();
             this.mainForm = mainForm;
         }
 
+        #region Methods
         public void DisplayProviders()
         {
             dgvProviders.Rows.Clear();
@@ -78,7 +82,9 @@ namespace supply_activity_app
                 }
             }
         }
+        #endregion
 
+        #region Events
         private void btnAdd_Click(object sender, EventArgs e)
         {    
             AddProviderForm addForm = new AddProviderForm(materials, providers);
@@ -168,6 +174,14 @@ namespace supply_activity_app
             }
         }
 
+        private void btnBack_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            mainForm.Show();
+        }
+        #endregion
+
+        #region Shortcuts
         private void FurnizoriForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode.ToString() == "A")
@@ -201,11 +215,6 @@ namespace supply_activity_app
                 Application.Exit();
             }
         }
-
-        private void btnBack_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            mainForm.Show();
-        }
+        #endregion
     }
 }

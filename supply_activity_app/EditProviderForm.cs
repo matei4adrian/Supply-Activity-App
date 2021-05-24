@@ -13,9 +13,12 @@ namespace supply_activity_app
 {
     public partial class EditProviderForm : Form
     {
+        #region Attributes
         private List<Material> materials = new List<Material>();
         private List<Provider> providers = new List<Provider>();
         private Provider provider = new Provider();
+        #endregion
+
         public EditProviderForm(Provider provider, List<Material> materials, List<Provider> providers)
         {
             InitializeComponent();
@@ -24,6 +27,7 @@ namespace supply_activity_app
             this.providers = providers;
         }
 
+        #region Events
         private void EditProvidersForm_Load(object sender, EventArgs e)
         {
             tbName.Text = provider.Name;
@@ -89,7 +93,9 @@ namespace supply_activity_app
                 MessageBox.Show("The provider already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Validations
         private void tbName_Validating(object sender, CancelEventArgs e)
         {
             if (tbName.Text.Trim().Length == 0)
@@ -149,7 +155,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(clbMaterials, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void EditProvidersForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -162,5 +170,6 @@ namespace supply_activity_app
                 btnOk_Click(sender, e);
             }
         }
+        #endregion
     }
 }

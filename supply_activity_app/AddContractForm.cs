@@ -13,9 +13,12 @@ namespace supply_activity_app
 {
     public partial class AddContractForm : Form
     {
+        #region Attributes
         private List<Contract> contracts = new List<Contract>();
         private List<Provider> providers = new List<Provider>();
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public AddContractForm(List<Contract> contracts, List<Provider> providers)
         {
             InitializeComponent();
@@ -23,6 +26,7 @@ namespace supply_activity_app
             this.providers = providers;
         }
 
+        #region Methods
         public void AddContract(Contract contract)
         {
             string query = "INSERT INTO Contracts(Provider, SignDate, Validity, Value) VALUES(@provider, @signDate, @validity, @value); SELECT last_insert_rowid()";
@@ -44,7 +48,9 @@ namespace supply_activity_app
                 contracts.Add(contract);
             }
         }
+        #endregion
 
+        #region Events
         private void AddContractForm_Load(object sender, EventArgs e)
         {
             foreach (Provider provider in providers)
@@ -104,7 +110,9 @@ namespace supply_activity_app
                 MessageBox.Show("Exception.");
             }
         }
+        #endregion
 
+        #region Validations
         private void cbProviders_Validating(object sender, CancelEventArgs e)
         {
             if (cbProviders.SelectedIndex < 0)
@@ -119,21 +127,21 @@ namespace supply_activity_app
             errorProvider1.SetError(cbProviders, null);
         }
 
-        //private void dtpDataSemn_Validating(object sender, CancelEventArgs e)
-        //{
-        //    DateTime todayDate = DateTime.Today;
-        //    if (todayDate < dtpDataSemn.Value)
-        //    {
-        //        errorProvider1.SetError(dtpDataSemn, "Data semnarii trebuie sa fie data de azi sau o data din trecut!");
-        //        e.Cancel = true;
-        //    }
-        //}
+        private void dtpSignDate_Validating(object sender, CancelEventArgs e)
+        {
+            DateTime todayDate = DateTime.Today;
+            if (todayDate.AddDays(1) < dtpSignDate.Value)
+            {
+                errorProvider1.SetError(dtpSignDate, "The date of signing must be today or a date in the past!");
+                e.Cancel = true;
+            }
+        }
 
-        //private void dtpDataSemn_Validated(object sender, EventArgs e)
-        //{
+        private void dtpSignDate_Validated(object sender, EventArgs e)
+        {
 
-        //    errorProvider1.SetError(dtpDataSemn, null);
-        //}
+            errorProvider1.SetError(dtpSignDate, null);
+        }
 
         private void tbValidity_Validating(object sender, CancelEventArgs e)
         {
@@ -169,7 +177,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(tbValue, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void AddContractForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -182,5 +192,6 @@ namespace supply_activity_app
                 btnAdd_Click(sender, e);
             }
         }
+        #endregion
     }
 }

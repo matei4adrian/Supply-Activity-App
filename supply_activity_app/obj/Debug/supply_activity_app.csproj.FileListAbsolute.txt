@@ -78,3 +78,6 @@ D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_ac
 D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\obj\Debug\supply_activity_app.csproj.CopyComplete
 D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\obj\Debug\supply_activity_app.exe
 D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\obj\Debug\supply_activity_app.pdb
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\obj\Debug\supply_activity_app.StatisticsForm.resources
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\bin\Debug\ChartLibrary.dll
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\bin\Debug\ChartLibrary.pdb

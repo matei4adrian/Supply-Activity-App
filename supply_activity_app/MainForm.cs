@@ -15,18 +15,23 @@ namespace supply_activity_app
 {
     public partial class MainForm : Form
     {
+        #region Attributes
         private List<Contract> contracts = new List<Contract>();
         private List<Provider> providers = new List<Provider>();
         private Rectangle dragBoxFromMouseDown;
         private int rowIndexFromMouseDown;
         private string connectionString = "Data Source=database.db";
         LoginForm loginForm;
+        private int printIndex = 0;
+        #endregion
+
         public MainForm(LoginForm loginForm)
         {
             InitializeComponent();
             this.loginForm = loginForm;
         }
 
+        #region Methods
         public void DisplayContracts()
         {
             dgvContracts.Rows.Clear();
@@ -117,7 +122,9 @@ namespace supply_activity_app
                 DisplayContracts();
             }
         }
+        #endregion
 
+        #region Events
         private void btnProviders_Click(object sender, EventArgs e)
         {
             ProvidersForm providersForm = new ProvidersForm(this);
@@ -327,40 +334,6 @@ namespace supply_activity_app
             }
         }
 
-        private void MainForm_KeyDown(object sender, KeyEventArgs e)
-        {
-            if(e.Control && e.KeyCode.ToString() == "E")
-            {
-                btnEdit_Click(sender, e);
-            }
-
-            if (e.Control && e.KeyCode.ToString() == "A")
-            {
-                btnAdd_Click(sender, e);
-            }
-
-            if (e.Control && e.KeyCode.ToString() == "P")
-            {
-                btnProviders_Click(sender, e);
-            }
-
-            if (e.Control && e.KeyCode.ToString() == "L")
-            {
-                btnLogout_Click(sender, e);
-                this.DialogResult = DialogResult.OK;
-            }
-
-            if (e.KeyCode == Keys.Escape)
-            {
-                Application.Exit();
-            }
-
-            if (e.Control && e.KeyCode.ToString() == "D")
-            {
-                DeleteContract();
-            }
-        }
-
         private void stergeToolStripMenuItem_Click(object sender, EventArgs e)
         {
             DeleteContract();
@@ -402,5 +375,251 @@ namespace supply_activity_app
             this.Close();
             loginForm.Show();
         }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            StatisticsForm statisticsForm = new StatisticsForm(contracts);
+            statisticsForm.ShowDialog();
+        }
+        #endregion
+
+        #region Shortcuts
+        private void MainForm_KeyDown(object sender, KeyEventArgs e)
+        {
+            if(e.Control && e.KeyCode.ToString() == "E")
+            {
+                btnEdit_Click(sender, e);
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "A")
+            {
+                btnAdd_Click(sender, e);
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "P")
+            {
+                btnProviders_Click(sender, e);
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "L")
+            {
+                btnLogout_Click(sender, e);
+                this.DialogResult = DialogResult.OK;
+            }
+
+            if (e.KeyCode == Keys.Escape)
+            {
+                Application.Exit();
+            }
+
+            if (e.Control && e.KeyCode.ToString() == "D")
+            {
+                DeleteContract();
+            }
+        }
+        #endregion
+
+        #region Printer
+        private void printDocument_BeginPrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            printIndex = 0;
+        }
+
+        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            Font font = new Font("Times New Roman", 14);
+            Font font1 = new Font("Times New Roman", 14, FontStyle.Bold);
+            StringFormat format = new StringFormat();
+            format.LineAlignment = StringAlignment.Center;
+            format.Alignment = StringAlignment.Center;
+
+            var pageSettings = e.PageSettings;
+
+            var printAreaHeight = e.MarginBounds.Height;
+            var printAreaWidth = e.MarginBounds.Width;
+
+            var marginLeft = e.MarginBounds.Left;
+            var marginTop = e.MarginBounds.Top;
+
+            int rowHeight = 50;
+            var columnWidth = printAreaWidth / 4;
+
+            var currentY = marginTop;
+
+            if(printIndex == 0)
+            {
+                var currentX = marginLeft;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    printAreaWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    "Provider",
+                    font1,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    "Signing Date",
+                    font1,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    "Validity(years)",
+                    font1,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    "Value(RON)",
+                    font1,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentY += rowHeight;
+            }
+
+            while (printIndex < contracts.Count)
+            {
+                var currentX = marginLeft;
+
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    printAreaWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    contracts[printIndex].Provider.Name,
+                    font,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    contracts[printIndex].SignDate.ToString(),
+                    font,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    contracts[printIndex].Validity.ToString(),
+                    font,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentX += columnWidth;
+                e.Graphics.DrawRectangle(
+                    Pens.Black,
+                    currentX,
+                    currentY,
+                    columnWidth,
+                    rowHeight
+                    );
+
+                e.Graphics.DrawString(
+                    contracts[printIndex].Value.ToString(),
+                    font,
+                    Brushes.Black,
+                    new RectangleF(currentX, currentY, columnWidth, rowHeight),
+                    format
+                    );
+
+                currentY += rowHeight;
+
+                printIndex++;
+
+                if (currentY - marginTop + rowHeight > printAreaHeight)
+                {
+                    e.HasMorePages = true;
+                    break;
+                }
+            }
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (printDialog.ShowDialog() == DialogResult.OK)
+            {
+                printDocument.Print();
+            }
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            printPreviewDialog.ShowDialog();
+        }
+
+        private void pageSetupToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (pageSetupDialog.ShowDialog() == DialogResult.OK)
+                printDocument.DefaultPageSettings = pageSetupDialog.PageSettings;
+        }
+        #endregion
     }
 }

@@ -17,6 +17,7 @@ namespace supply_activity_app
             InitializeComponent();
         }
 
+        #region Shortcuts
         private void InfoForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -24,5 +25,6 @@ namespace supply_activity_app
                 this.Close();
             }
         }
+        #endregion
     }
 }

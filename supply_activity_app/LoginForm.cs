@@ -13,12 +13,16 @@ namespace supply_activity_app
 {
     public partial class LoginForm : Form
     {
+        #region Attributed
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public LoginForm()
         {
             InitializeComponent();
         }
 
+        #region Events
         private void btnLogin_Click(object sender, EventArgs e)
         {
             if(tbUser.Text.Trim() == "" && tbPass.Text.Trim() == "")
@@ -101,6 +105,20 @@ namespace supply_activity_app
             toolStrip1.BackColor = Color.FromArgb(44, 43, 68);
         }
 
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            SupportForm supportForm = new SupportForm();
+            supportForm.ShowDialog();
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            InfoForm infoForm = new InfoForm();
+            infoForm.ShowDialog();
+        }
+        #endregion
+
+        #region Shortcuts
         private void LoginForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -118,17 +136,8 @@ namespace supply_activity_app
                 toolStripButton2_Click(sender, e);
             }
         }
+        #endregion
 
-        private void toolStripButton1_Click(object sender, EventArgs e)
-        {
-            SupportForm supportForm = new SupportForm();
-            supportForm.ShowDialog();
-        }
-
-        private void toolStripButton2_Click(object sender, EventArgs e)
-        {
-            InfoForm infoForm = new InfoForm();
-            infoForm.ShowDialog();
-        }
+        
     }
 }

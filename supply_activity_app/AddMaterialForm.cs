@@ -14,14 +14,18 @@ namespace supply_activity_app
 {
     public partial class AddMaterialForm : Form
     {
+        #region Attributes
         private List<Material> materials = new List<Material>();
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public AddMaterialForm(List<Material> materials)
         {
             InitializeComponent();
             this.materials = materials;
         }
 
+        #region Methods
         public void AddMaterial(Material material)
         {
             string query = "INSERT INTO Materials(Name, Price) VALUES(@name, @price); SELECT last_insert_rowid()";
@@ -41,7 +45,9 @@ namespace supply_activity_app
                 materials.Add(material);
             }
         }
+        #endregion
 
+        #region Events
         private void btnAdd_Click(object sender, EventArgs e)
         {
             if (tbName.Text == "" || tbPrice.Text == "")
@@ -73,7 +79,9 @@ namespace supply_activity_app
                 MessageBox.Show("This material already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Validations
         private void tbName_Validating(object sender, CancelEventArgs e)
         {
             if (tbName.Text.Trim().Length == 0)
@@ -119,7 +127,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(tbPrice, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void AddMaterialForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -132,6 +142,7 @@ namespace supply_activity_app
                 btnAdd_Click(sender, e);
             }
         }
+        #endregion
     }
 }
 

@@ -15,8 +15,10 @@ namespace supply_activity_app
 {
     public partial class AddProviderForm : Form
     {
+        #region Attributes
         private List<Material> materials = new List<Material>();
         private List<Provider> providers = new List<Provider>();
+        #endregion
 
         public AddProviderForm(List<Material> materials, List<Provider> providers)
         {
@@ -25,6 +27,7 @@ namespace supply_activity_app
             this.providers = providers;
         }
 
+        #region Events
         private void AddProviderForm_Load(object sender, EventArgs e)
         {
             foreach (Material material in materials)
@@ -75,7 +78,9 @@ namespace supply_activity_app
                 MessageBox.Show("The provider already exists!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+        #endregion
 
+        #region Validations
         private void tbName_Validating(object sender, CancelEventArgs e)
         {
             if (tbName.Text.Trim().Length == 0)
@@ -135,7 +140,9 @@ namespace supply_activity_app
         {
             errorProvider1.SetError(clbMaterials, null);
         }
+        #endregion
 
+        #region Shortcuts
         private void AddProviderForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -148,5 +155,6 @@ namespace supply_activity_app
                 btnAdd_Click(sender, e);
             }
         }
+        #endregion
     }
 }

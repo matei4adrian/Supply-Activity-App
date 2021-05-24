@@ -135,6 +135,8 @@ namespace supply_activity_app
             this.dtpSignDate.Name = "dtpSignDate";
             this.dtpSignDate.Size = new System.Drawing.Size(230, 22);
             this.dtpSignDate.TabIndex = 13;
+            this.dtpSignDate.Validating += new System.ComponentModel.CancelEventHandler(this.dtpSignDate_Validating);
+            this.dtpSignDate.Validated += new System.EventHandler(this.dtpSignDate_Validated);
             // 
             // cbProviders
             // 

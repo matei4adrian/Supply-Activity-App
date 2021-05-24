@@ -1,0 +1,8 @@
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\bin\Debug\ChartLibrary.dll
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\bin\Debug\ChartLibrary.pdb
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.csprojAssemblyReference.cache
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.csproj.CoreCompileInputs.cache
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.dll
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.pdb
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.DonutChartControl.resources
+D:\FACULTATE CSIE 2019-2022\CSIE an II\CSIE sem II\PAW\Seminar\PROIECT\supply_activity_app\ChartLibrary\obj\Debug\ChartLibrary.csproj.GenerateResource.cache

@@ -15,14 +15,18 @@ namespace supply_activity_app
 {
     public partial class MaterialsForm : Form
     {
+        #region Attributes
         private List<Material> _materials = new List<Material>();
         private string connectionString = "Data Source=database.db";
+        #endregion
+
         public MaterialsForm(List<Material> materials)
         {
             InitializeComponent();
             _materials = materials;
         }
 
+        #region Methods
         public void DisplayMaterials()
         {
             dgvMaterials.Rows.Clear();
@@ -61,7 +65,9 @@ namespace supply_activity_app
         //        }
         //    }
         //}
+        #endregion
 
+        #region Events
         private void btnAdd_Click(object sender, EventArgs e)
         {
             AddMaterialForm addForm = new AddMaterialForm(_materials);
@@ -121,7 +127,9 @@ namespace supply_activity_app
             //LoadMaterials();
             DisplayMaterials();
         }
+        #endregion
 
+        #region Shortcuts
         private void MaterialeForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Control && e.KeyCode.ToString() == "A")
@@ -144,5 +152,6 @@ namespace supply_activity_app
                 this.Close();
             }
         }
+        #endregion
     }
 }

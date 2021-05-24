@@ -17,6 +17,7 @@ namespace supply_activity_app
             InitializeComponent();
         }
 
+        #region Events
         private void button1_Click(object sender, EventArgs e)
         {
             System.Diagnostics.Process.Start("https://www.facebook.com/matei4adrian/");
@@ -31,7 +32,9 @@ namespace supply_activity_app
         {
             System.Diagnostics.Process.Start("https://www.linkedin.com/in/matei4adrian/");
         }
+        #endregion
 
+        #region Shortcuts
         private void SupportForm_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Escape)
@@ -39,5 +42,6 @@ namespace supply_activity_app
                 this.Close();
             }
         }
+        #endregion
     }
 }

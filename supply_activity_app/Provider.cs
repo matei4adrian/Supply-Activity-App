@@ -45,7 +45,7 @@ namespace supply_activity_app
             get { return founded; }
             set
             {
-                if (value != null && value >= 1600)
+                if (value != 0 && value >= 1600)
                 {
                     founded = value;
                 }
