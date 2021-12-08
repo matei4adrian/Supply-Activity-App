@@ -1,6 +1,8 @@
 # Supply-Activity-App
 A windows form app for supply activity management.
 
+** PLEASE ADD AN USER TO THE USERS TABLE BEFORE THE FIRST RUN OF THE APPLICATION BECAUSE YOU NEED AN ACCOUNT FOR LOGIN!
+
 ![loginPage](https://user-images.githubusercontent.com/57460362/145260229-f56856d4-4ede-4a11-acd9-6184c02b34a4.jpg)
 ![infoPage](https://user-images.githubusercontent.com/57460362/145260235-bf4374c3-4c8b-4dde-b7a8-175646a04a57.png)
 ![supportPage](https://user-images.githubusercontent.com/57460362/145260238-8940e3d6-fbee-4675-9b80-6944b580f1a3.png)
